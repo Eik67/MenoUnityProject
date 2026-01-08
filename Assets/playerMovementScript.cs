@@ -6,7 +6,7 @@ public class playerMovementScript : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private float jumpHeight;
-    [SerializeField] private bool grounded;
+    [SerializeField] private LayerMask groundLayer;
     private Rigidbody2D rb;
 
     // Start is called before the first frame update
@@ -18,8 +18,6 @@ public class playerMovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        grounded = Physics2D.Raycast(transform.position, Vector2.down, 55f, LayerMask.NameToLayer("Ground"));
-        Debug.DrawRay(transform.position, Vector2.down, Color.red ,5f );
         //move
         Vector2 input = new Vector2(x: Input.GetAxisRaw("Horizontal"), y: 0);
 
@@ -32,15 +30,19 @@ public class playerMovementScript : MonoBehaviour
             * Time.deltaTime
             * speed;
         //jump
-        if (Input.GetKey(KeyCode.W) && grounded)
+        if (Input.GetKeyDown(KeyCode.W) && isGrounded())
         {
-            rb.AddForce(new Vector3(x: 0, y: jumpHeight));
-            grounded = false;
-
+            rb.AddForce(new Vector2( 0, 1) * jumpHeight,ForceMode2D.Impulse);
         }
 
-        Debug.Log(grounded.ToString());
+    }
 
-
+    bool isGrounded()
+    {
+        return Physics2D.Raycast(
+        origin: transform.position, 
+        direction: Vector2.down, 
+        distance: 1.3f, 
+            layerMask: groundLayer);
     }
 }
