@@ -29,6 +29,7 @@ public class BackpackScript : MonoBehaviour
         vacuumScript = GetComponentInParent<VacuumScript>();
         activeSlot = 1; 
         menuSlots = canvas.GetComponentsInChildren<TextMeshProUGUI>();
+        menuUpdate();
     }
 
     // Update is called once per frame
