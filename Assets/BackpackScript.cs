@@ -101,7 +101,7 @@ public class BackpackScript : MonoBehaviour
             rb.AddForce(
                 (us.PointerInput() - (Vector2)player.transform.position).normalized * shootForce, 
                 ForceMode2D.Impulse);
-            rb.rotation = Random.Range(0,361);
+            //rb.rotation = Random.Range(0,361);
             rb.angularVelocity = Random.Range(-150, 150);
 
             //inv management
