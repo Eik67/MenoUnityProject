@@ -5,6 +5,8 @@ using Unity.Collections;
 using UnityEditor;
 using UnityEngine;
 using TMPro;
+using Unity.Mathematics;
+using Random = UnityEngine.Random;
 
 public class BackpackScript : MonoBehaviour
 {
@@ -13,18 +15,26 @@ public class BackpackScript : MonoBehaviour
     [SerializeField] GameObject item3;
     [SerializeField] GameObject item4;
     [SerializeField] GameObject item5;
+    [SerializeField] GameObject item6;
+    [SerializeField] GameObject item7;
+
+    [SerializeField] float shootForce;
 
     private Hashtable table;
     private VacuumScript vacuumScript;
     private int activeSlot;
     private GameObject vacuum;
+    private GameObject player;
     private Canvas canvas;
     private TextMeshProUGUI[] menuSlots;
+    private UniversalScript us;
 
     void Start()
     {
         canvas = GameObject.Find("UI").GetComponentInChildren<Canvas>();
         vacuum = GameObject.Find("Vacuum");
+        player = GameObject.Find("Player");
+        us = player.GetComponent<UniversalScript>();
         table = new Hashtable();
         vacuumScript = GetComponentInParent<VacuumScript>();
         activeSlot = 1; 
@@ -73,6 +83,7 @@ public class BackpackScript : MonoBehaviour
             }
             counter++;
         }
+        //mit lo?
         GameObject projectile = null;
         if (projectileId != null) {
             switch (projectileId) {
@@ -81,10 +92,20 @@ public class BackpackScript : MonoBehaviour
                 case 3: projectile = item3;break;
                 case 4: projectile = item4;break;
                 case 5: projectile = item5;break;
+                case 6: projectile = item6;break;
+                case 7: projectile = item7; break;
             }
-            Instantiate(projectile, vacuum.transform.position, Quaternion.identity);
-            table[projectileId] = (int)table[projectileId]-1;
+            //merre
+            var spawned = Instantiate(projectile, vacuum.transform.position, Quaternion.identity);
+            Rigidbody2D rb = spawned.GetComponent<Rigidbody2D>();
+            rb.AddForce(
+                (us.PointerInput() - (Vector2)player.transform.position).normalized * shootForce, 
+                ForceMode2D.Impulse);
+            rb.rotation = Random.Range(0,361);
+            rb.angularVelocity = Random.Range(-150, 150);
 
+            //inv management
+            table[projectileId] = (int)table[projectileId]-1;
             if ((int)table[projectileId] == 0)
             {
                 table.Remove(projectileId);
