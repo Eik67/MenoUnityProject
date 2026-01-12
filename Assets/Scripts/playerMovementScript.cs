@@ -7,6 +7,7 @@ public class playerMovementScript : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float jumpHeight;
     [SerializeField] private LayerMask groundLayer;
+
     private Rigidbody2D rb;
     private AudioSource audioS;
 
