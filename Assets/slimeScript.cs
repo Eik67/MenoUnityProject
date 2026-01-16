@@ -9,6 +9,7 @@ public class slimeScript : MonoBehaviour
     private float jumpInbetween;
     private float jumpInbetweenCountdown;
     private float hunger;
+    private float maxHunger;
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
     // Start is called before the first frame update
@@ -17,6 +18,8 @@ public class slimeScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         newTimer();
+        hunger = 100;
+        maxHunger = 100;
     }
 
     // Update is called once per frame
@@ -31,7 +34,14 @@ public class slimeScript : MonoBehaviour
             jump();
             newTimer();
         }
-
+        if (hunger > 0)
+        {
+            hunger -= Time.deltaTime*10;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 
     }
 
