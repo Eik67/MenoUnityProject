@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class slimeScript : MonoBehaviour
 {
-    [SerializeField] float jumpStrength;
+    [SerializeField] private float hungerDrain;
+    [SerializeField] private float maxHunger;
+    [SerializeField] private LayerMask foodLayer;
 
     private float jumpInbetween;
     private float jumpInbetweenCountdown;
     private float hunger;
-    private float maxHunger;
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
     // Start is called before the first frame update
@@ -18,8 +19,9 @@ public class slimeScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         newTimer();
-        hunger = 100;
         maxHunger = 100;
+        hunger = maxHunger/2;
+        
     }
 
     // Update is called once per frame
@@ -36,11 +38,12 @@ public class slimeScript : MonoBehaviour
         }
         if (hunger > 0)
         {
-            hunger -= Time.deltaTime*10;
+            hunger -= Time.deltaTime*hungerDrain;
+            sprite.color = Color.white;
         }
         else
         {
-            Destroy(gameObject);
+            sprite.color = Color.red;
         }
 
     }
@@ -49,6 +52,16 @@ public class slimeScript : MonoBehaviour
     {
         jumpInbetween = Random.Range(2.5f, 4.5f);
         jumpInbetweenCountdown = jumpInbetween;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //HA KAJA
+        if (collision.gameObject.layer == 8)
+        {
+            Destroy(collision.gameObject);
+            hunger += maxHunger*0.8f;
+        }
     }
 
     void jump()

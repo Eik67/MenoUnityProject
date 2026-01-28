@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3295134656194674379}
   - component: {fileID: 5000431482262447825}
-  - component: {fileID: 8642594695938800518}
   - component: {fileID: 638477934469641192}
+  - component: {fileID: 8642594695938800518}
   - component: {fileID: 193197252860691320}
   - component: {fileID: -4863911005737949898}
   m_Layer: 0
@@ -88,19 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8642594695938800518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3531710729229987387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73647cd5a2a82d341929f421923d608c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpStrength: 0
 --- !u!70 &638477934469641192
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -116,7 +103,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 320
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -136,6 +123,23 @@ CapsuleCollider2D:
   m_Offset: {x: 0.2993345, y: 0.21511921}
   m_Size: {x: 13.373328, y: 9.123259}
   m_Direction: 1
+--- !u!114 &8642594695938800518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3531710729229987387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73647cd5a2a82d341929f421923d608c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hungerDrain: 1
+  maxHunger: 100
+  foodLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &193197252860691320
 MonoBehaviour:
   m_ObjectHideFlags: 0
