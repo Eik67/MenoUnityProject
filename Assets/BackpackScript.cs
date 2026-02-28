@@ -18,6 +18,8 @@ public class BackpackScript : MonoBehaviour
     [SerializeField] GameObject item6;
     [SerializeField] GameObject item7;
     [SerializeField] GameObject food;
+    [SerializeField] GameObject plort;
+
 
     [SerializeField] float shootForce;
 
@@ -96,6 +98,7 @@ public class BackpackScript : MonoBehaviour
                 case 6: projectile = item6;break;
                 case 7: projectile = item7; break;
                 case 10: projectile = food;break;
+                case 20: projectile = plort;break;
             }
             //merre
             var spawned = Instantiate(projectile, vacuum.transform.position, Quaternion.identity);

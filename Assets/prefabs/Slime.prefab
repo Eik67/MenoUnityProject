@@ -135,11 +135,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73647cd5a2a82d341929f421923d608c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hungerDrain: 1
+  hungerDrain: 10
   maxHunger: 100
   foodLayer:
     serializedVersion: 2
     m_Bits: 256
+  plort: {fileID: 3537021135290402329, guid: 91c397ad91178904a91d8ef9a5e07ad2, type: 3}
+  plortCooldown: 5
 --- !u!114 &193197252860691320
 MonoBehaviour:
   m_ObjectHideFlags: 0

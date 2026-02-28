@@ -7,9 +7,12 @@ public class slimeScript : MonoBehaviour
     [SerializeField] private float hungerDrain;
     [SerializeField] private float maxHunger;
     [SerializeField] private LayerMask foodLayer;
+    [SerializeField] private GameObject plort;
+    [SerializeField] private float plortCooldown;
 
     private float jumpInbetween;
     private float jumpInbetweenCountdown;
+    private float plortCooldownCountdown;
     private float hunger;
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
@@ -21,7 +24,7 @@ public class slimeScript : MonoBehaviour
         newTimer();
         maxHunger = 100;
         hunger = maxHunger/2;
-        
+        plortCooldownCountdown = plortCooldown;
     }
 
     // Update is called once per frame
@@ -45,6 +48,7 @@ public class slimeScript : MonoBehaviour
         {
             sprite.color = Color.red;
         }
+        plortCooldownCountdown -= Time.deltaTime;
 
     }
 
@@ -61,6 +65,11 @@ public class slimeScript : MonoBehaviour
         {
             Destroy(collision.gameObject);
             hunger += maxHunger*0.8f;
+            if(plortCooldownCountdown <= 0)
+            {
+                Instantiate(plort, new Vector2(transform.position.x, transform.position.y + 3), Quaternion.identity);
+                plortCooldownCountdown = plortCooldown;
+            }
         }
     }
 
