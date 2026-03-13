@@ -9,14 +9,10 @@ using Unity.Mathematics;
 using Random = UnityEngine.Random;
 
 public class BackpackScript : MonoBehaviour
-{
-    [SerializeField] GameObject item1;
-    [SerializeField] GameObject item2;
-    [SerializeField] GameObject item3;
-    [SerializeField] GameObject item4;
-    [SerializeField] GameObject item5;
-    [SerializeField] GameObject item6;
-    [SerializeField] GameObject item7;
+{ 
+
+    //w programming
+    [SerializeField] GameObject slime;
     [SerializeField] GameObject food;
     [SerializeField] GameObject plort;
 
@@ -89,16 +85,10 @@ public class BackpackScript : MonoBehaviour
         //mit lo?
         GameObject projectile = null;
         if (projectileId != null) {
-            switch (projectileId) {
-                case 1: projectile = item1;break;
-                case 2: projectile = item2;break;
-                case 3: projectile = item3;break;
-                case 4: projectile = item4;break;
-                case 5: projectile = item5;break;
-                case 6: projectile = item6;break;
-                case 7: projectile = item7; break;
-                case 10: projectile = food;break;
-                case 20: projectile = plort;break;
+            switch (projectileId) { 
+                case 1: projectile = slime; break;
+                case 2: projectile = food;break;
+                case 3: projectile = plort;break;
             }
             //merre
             var spawned = Instantiate(projectile, vacuum.transform.position, Quaternion.identity);
@@ -130,14 +120,12 @@ public class BackpackScript : MonoBehaviour
                     if (table.ContainsKey(vs.Id))
                     {
                         table[vs.Id] = (int)table[vs.Id] + 1;
-                        Debug.Log(vs.Id+" | "+table[vs.Id]);
                         Destroy(vs.gameObject);
                         menuUpdate();
                        }
                     else if(table.Count < 4)
                     {
                         table.Add(vs.Id, 1);
-                        Debug.Log(vs.Id + " | " + table[vs.Id]);
                         Destroy(vs.gameObject);
                         menuUpdate();
                     }
@@ -154,6 +142,7 @@ public class BackpackScript : MonoBehaviour
         int counter = 0;
         foreach (var id in table.Keys)
         {
+            
             menuSlots[counter].text = id + " | " + table[id]    ;
             counter++;
         }

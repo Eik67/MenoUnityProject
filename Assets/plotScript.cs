@@ -1,16 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering;
 
-public class plortScript : MonoBehaviour
+public class plotScript : MonoBehaviour
 {
-    [SerializeField] private float value;
-
-    public float Value { get => value; set => this.value = value; }
-
+    // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -18,4 +16,10 @@ public class plortScript : MonoBehaviour
     {
         
     }
+
+    public void test()
+    {
+
+    }
+
 }

@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vacuumSpeed: 0.867
-  id: 7
+  id: 1
 --- !u!50 &-4863911005737949898
 Rigidbody2D:
   serializedVersion: 4
