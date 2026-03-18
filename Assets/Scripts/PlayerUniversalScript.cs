@@ -19,7 +19,7 @@ public class UniversalScript : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         canvas = GameObject.Find("UI").GetComponentInChildren<Canvas>();
         menuSlots = canvas.GetComponentsInChildren<TextMeshProUGUI>();
-        Money = 0;
+        Money = 1000;
     }
     void Start()
     {
